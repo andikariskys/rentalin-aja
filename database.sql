@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS users (
     name VARCHAR(100) NOT NULL,
     gender ENUM('Laki-laki', 'Perempuan') NOT NULL DEFAULT 'Laki-laki',
     address TEXT,
-    no_telp VARCHAR(15) NOT NULL,
+    phone VARCHAR(15) NOT NULL,
     role ENUM('admin', 'user') NOT NULL DEFAULT 'user'
 );
 
@@ -46,13 +46,16 @@ CREATE TABLE IF NOT EXISTS borrowings (
     borrowing_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     return_date DATETIME,
     code VARCHAR(50) NOT NULL UNIQUE,
+    identity_type ENUM('KTP', 'SIM', 'KK', 'Ijazah'),
+    identity_number VARCHAR(50),
+    identity_name VARCHAR(100),
     status ENUM('pending', 'approved', 'returned', 'overdue') NOT NULL DEFAULT 'pending',
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-INSERT INTO borrowings VALUES ('a1b2c3d4-e5f6-7a8b-9c0d-e1f2a3b4c5d6', '4fdc831c-1a9b-4bfe-9e1b-e799479cd12e', '2025-06-01 12:00:00', '2025-06-03 09:00:00', 'PIN250606-0900', 'returned');
-INSERT INTO borrowings VALUES ('d4e5f6a7-b8c9-0d1e-f2a3-b4c5d6e7f8a9', '4fdc831c-1a9b-4bfe-9e1b-e799479cd12e', '2025-06-03 11:00:00', NULL, 'PIN250603-1100', 'approved');
-INSERT INTO borrowings VALUES ('c3d4e5f6-a7b8-9c0d-e1f2-a3b4c5d6e7f8', '5a6b7c8d-9e0f-1a2b-3c4d-5e6f7g8h9i0j', '2025-06-02 10:00:00', NULL, 'PIN250602-1000', 'pending');
+INSERT INTO borrowings VALUES ('a1b2c3d4-e5f6-7a8b-9c0d-e1f2a3b4c5d6', '4fdc831c-1a9b-4bfe-9e1b-e799479cd12e', '2025-06-01 12:00:00', '2025-06-03 09:00:00', 'PIN250606-0900', 'KTP', '3313050000000001', 'Jacowi', 'returned');
+INSERT INTO borrowings VALUES ('d4e5f6a7-b8c9-0d1e-f2a3-b4c5d6e7f8a9', '4fdc831c-1a9b-4bfe-9e1b-e799479cd12e', '2025-06-03 11:00:00', NULL, 'PIN250603-1100', 'SIM', '3313050000000002', 'Gabrin', 'approved');
+INSERT INTO borrowings VALUES ('c3d4e5f6-a7b8-9c0d-e1f2-a3b4c5d6e7f8', '5a6b7c8d-9e0f-1a2b-3c4d-5e6f7g8h9i0j', '2025-06-02 10:00:00', NULL, 'PIN250602-1000', NULL, NULL, NULL, 'pending');
 
 CREATE TABLE IF NOT EXISTS borrowing_details (
     id CHAR(36) PRIMARY KEY,
