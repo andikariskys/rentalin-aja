@@ -11,13 +11,23 @@ $conn = mysqli_connect($host, $user, $password, $database);
 function admin_require_login()
 {
     if (!isset($_SESSION['admin_id'])) {
-        header('Location: ../login.php');
+        echo "
+        <script>
+        alert('Untuk mengakses halaman ini, Anda harus login terlebih dahulu.');
+        window.location.href = '../login.php';
+        </script>
+        ";
     }
 }
 
 function user_require_login()
 {
     if (!isset($_SESSION['user_id'])) {
-        header('Location: login.php');
+        echo "
+        <script>
+        alert('Untuk mengakses halaman ini, Anda harus login terlebih dahulu.');
+        window.location.href = 'login.php';
+        </script>
+        ";
     }
 }

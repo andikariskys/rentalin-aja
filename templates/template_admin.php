@@ -1,6 +1,6 @@
 <?php
 
-function header_navbar($title, $active)
+function header_navbar($active)
 {
 ?>
     <!DOCTYPE html>
@@ -9,9 +9,10 @@ function header_navbar($title, $active)
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title><?= $title ?></title>
+            <title><?= $active ?></title>
             <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
-            <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
+            <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
+            <link rel="stylesheet" href="../assets/datatables/datatables.min.css">
         </head>
 
         <body>
@@ -24,13 +25,13 @@ function header_navbar($title, $active)
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav me-0 ms-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link fw-semibold <?php if ($active == 'dashboard'){ echo 'active'; } ?>" href="index.php" aria-current="page">Dashboard</a>
+                        <a class="nav-link fw-semibold <?php if ($active == 'Dashboard'){ echo 'active disabled'; } ?>" href="index.php" aria-current="page">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-semibold <?php if ($active == 'kategori'){ echo 'active'; } ?>" href="categories.php">Kategori</a>
+                        <a class="nav-link fw-semibold <?php if ($active == 'Kategori'){ echo 'active disabled'; } ?>" href="categories.php">Kategori</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-semibold <?php if ($active == 'pengguna'){ echo 'active'; } ?>" href="users.php">Pengguna</a>
+                        <a class="nav-link fw-semibold <?php if ($active == 'Admin'){ echo 'active disabled'; } ?>" href="admins.php">Admin</a>
                     </li>
                     <li class="nav-item">
                         <a class="fw-semibold btn btn-danger" href="../logout.php">Logout</a>
@@ -54,6 +55,10 @@ function footer() {
 
         <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="../assets/bootstrap/js/jquery.min.js"></script>
+        <script src="../assets/datatables/datatables.min.js"></script>
+        <script>
+            let table = new DataTable('#myTable');
+        </script>
     </body>
 
     </html>

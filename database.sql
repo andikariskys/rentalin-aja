@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- username: admin, password: admin | username: andika, password: andika | username: alta, password: alta123
 INSERT INTO users VALUES ('b0206b4c-3cdf-41dc-a9b7-73886d863633', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', 'Laki-laki', 'Jl. Admin No. 1', '081234567890', 'admin');
-INSERT INTO users VALUES ('4fdc831c-1a9b-4bfe-9e1b-e799479cd12e', 'andika', '7e51eea5fa101ed4dade9ad3a7a072bb', 'Andka Risky', 'Laki-laki', 'Jl. Karanganyar No. 1', '0811223344556', 'user');
+INSERT INTO users VALUES ('4fdc831c-1a9b-4bfe-9e1b-e799479cd12e', 'andika', '7e51eea5fa101ed4dade9ad3a7a072bb', 'Andika Risky', 'Laki-laki', 'Jl. Karanganyar No. 1', '0811223344556', 'user');
 INSERT INTO users VALUES ('5a6b7c8d-9e0f-1a2b-3c4d-5e6f7g8h9i0j', 'alta', 'a41ae22e9f10528c184e5acb86bebacc', 'Alta Moda', 'Perempuan', 'Jl. Mojogedang No. 2', '0822334455667', 'user');
 
 CREATE TABLE IF NOT EXISTS categories (
@@ -43,7 +43,7 @@ INSERT INTO products VALUES ('f6b9ae32-b856-4f84-a71c-a4be54e69760', 'Office Cha
 CREATE TABLE IF NOT EXISTS borrowings (
     id CHAR(36) PRIMARY KEY,
     user_id CHAR(36) NOT NULL,
-    borrowing_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    borrow_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     return_date DATETIME,
     code VARCHAR(50) NOT NULL UNIQUE,
     identity_type ENUM('KTP', 'SIM', 'KK', 'Ijazah'),
