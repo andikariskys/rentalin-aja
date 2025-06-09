@@ -23,8 +23,9 @@ CREATE TABLE IF NOT EXISTS categories (
     description TEXT
 );
 
-INSERT INTO categories VALUES ('b1c2d3e4-f5a6-7b8c-9d0e-f1a2b3c4d5e6', 'Electronics', 'Devices and gadgets');
-INSERT INTO categories VALUES ('c2d3e4f5-a6b7-8c9d-0e1f-2a3b4c5d6e7f', 'Furniture', 'Home and office furniture');
+INSERT INTO categories VALUES ('b1c2d3e4-f5a6-7b8c-9d0e-f1a2b3c4d5e6', 'Elektronik', 'Peralatan yang digunakan dalam kehidupan sehari-hari');
+INSERT INTO categories VALUES ('c2d3e4f5-a6b7-8c9d-0e1f-2a3b4c5d6e7f', 'Furniture', 'Perabotan rumah tangga yang digunakan untuk kenyamanan');
+INSERT INTO categories VALUES ('d3e4f5a6-b7c8-9d0e-f1a2-b3c4d5e6f7g8', 'Kendaraan', 'Peralatan transportasi yang digunakan sehari-hari')
 
 CREATE TABLE IF NOT EXISTS products (
     id CHAR(36) PRIMARY KEY,
@@ -49,7 +50,7 @@ CREATE TABLE IF NOT EXISTS borrowings (
     identity_type ENUM('KTP', 'SIM', 'KK', 'Ijazah'),
     identity_number VARCHAR(50),
     identity_name VARCHAR(100),
-    status ENUM('pending', 'approved', 'returned', 'overdue') NOT NULL DEFAULT 'pending',
+    status ENUM('pending', 'approved', 'rejected', 'returned', 'overdue') NOT NULL DEFAULT 'pending',
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 

@@ -3,14 +3,14 @@ include '../connection.php';
 admin_require_login();
 
 include '../templates/template_admin.php';
-header_navbar('Admin');
+header_navbar('Produk');
 
 $adminId = $_SESSION['admin_id'];
-$query = mysqli_query($conn, "SELECT * FROM users WHERE role = 'admin' OR id != '$adminId'");
+$query = mysqli_query($conn, "SELECT * FROM products");
 ?>
 
 <center>
-    <h1 class="mt-5">Dashboard Admin</h1>
+    <h1 class="mt-5">Data Produk</h1>
 </center>
 
 <?php

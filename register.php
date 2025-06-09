@@ -48,19 +48,19 @@ header_navbar('Register');
                 }
                 ?>
                 <form action="" method="post">
-                    <input type="text" name="username" class="form-control" placeholder="Username" required>
+                    <input type="text" name="username" class="form-control" placeholder="Username" onkeypress="remove_space(this)" required>
                     <input type="password" name="password" class="form-control mt-2" placeholder="Password" required>
                     <input type="text" name="name" class="form-control mt-2" placeholder="Nama Lengkap" required>
                     <div class="form-check form-check-inline mt-2">
-                        <input class="form-check-input" type="radio" name="gender" id="male" value="Laki-laki" required/>
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="Laki-laki" required />
                         <label class="form-check-label" for="male">Laki-laki</label>
                     </div>
                     <div class="form-check form-check-inline mt-2">
-                        <input class="form-check-input" type="radio" name="gender" id="female" value="Perempuan"/>
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="Perempuan" />
                         <label class="form-check-label" for="female">Perempuan</label>
                     </div>
                     <textarea name="address" class="form-control mt-2" placeholder="Alamat" required></textarea>
-                    <input type="text" name="phone" class="form-control mt-2" placeholder="Nomor Telepon" value="0" minlength="12" maxlength="14" required>
+                    <input type="text" name="phone" class="form-control mt-2" placeholder="Nomor Telepon" value="0" minlength="12" maxlength="14" onkeypress="number_only(this)" required>
                     <button name="submit" type="submit" class="btn btn-primary w-100 mt-3">Daftar</button>
                 </form>
                 <div class="text-center mt-3">
@@ -70,6 +70,17 @@ header_navbar('Register');
         </div>
     </div>
 </div>
+
+<script>
+    function remove_space(input) {
+        input.value = input.value.replace(/[^a-zA-z0-9]/g, '');
+        input.value = input.value.toLowerCase();
+    }
+
+    function number_only(input) {
+        input.value = input.value.replace(/[^0-9]/g, '');
+    }
+</script>
 
 <?php
 footer();

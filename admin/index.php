@@ -40,6 +40,8 @@ $query = mysqli_query($conn, "SELECT * FROM borrowings INNER JOIN users ON borro
                         echo '<span class="badge bg-warning text-dark">Pending</span>';
                     } elseif ($data['status'] == 'returned') {
                         echo '<span class="badge bg-success">Returned</span>';
+                    } elseif ($data['status'] == 'rejected') {
+                        echo '<span class="badge bg-secondary">Rejected</span>';
                     } elseif ($data['status'] == 'approved') {
                         echo '<span class="badge bg-info">Approved</span>';
                     } else {

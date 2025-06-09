@@ -95,7 +95,7 @@ $query = mysqli_query($conn, "SELECT c.*, COUNT(p.id) as count FROM categories c
                 <?php if ($editData) { ?>
                     <input type="hidden" name="id" value="<?= $editData['id']; ?>">
                     <button type="submit" name="update" class="btn btn-warning"><i class="fa-solid fa-floppy-disk"></i> Update Kategori</button>
-                    <a href="categories.php" class="btn btn-secondary">Batalkan</a>
+                    <a href="categories.php" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Batalkan</a>
                 <?php } else { ?>
                     <button type="submit" name="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Tambah Kategori</button>
                 <?php } ?>

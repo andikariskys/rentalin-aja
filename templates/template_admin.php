@@ -31,7 +31,10 @@ function header_navbar($active)
                         <a class="nav-link fw-semibold <?php if ($active == 'Kategori'){ echo 'active disabled'; } ?>" href="categories.php">Kategori</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-semibold <?php if ($active == 'Admin'){ echo 'active disabled'; } ?>" href="admins.php">Admin</a>
+                        <a class="nav-link fw-semibold <?php if ($active == 'Produk'){ echo 'active disabled'; } ?>" href="products.php">Produk</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold <?php if ($active == 'Pengguna'){ echo 'active disabled'; } ?>" href="users.php">Pengguna</a>
                     </li>
                     <li class="nav-item">
                         <a class="fw-semibold btn btn-danger" href="../logout.php">Logout</a>
