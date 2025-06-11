@@ -1,6 +1,6 @@
 <?php
 
-function header_navbar($title, $active)
+function header_navbar($title)
 {
 ?>
     <!DOCTYPE html>
@@ -25,10 +25,10 @@ function header_navbar($title, $active)
                 <ul class="navbar-nav me-0 ms-auto mt-2 mt-lg-0">
                     <?php if (isset($_SESSION['user_id'])) { ?>
                     <li class="nav-item">
-                        <a class="nav-link fw-semibold <?php if ($active == 'dashboard'){ echo 'active'; } ?>" href="index.php" aria-current="page">Dashboard</a>
+                        <a class="nav-link fw-semibold <?php if ($title == 'Rentalin Aja'){ echo 'active disabled'; } ?>" href="index.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-semibold <?php if ($active == 'riwayat'){ echo 'active'; } ?>" href="history.php">Riwayat</a>
+                        <a class="nav-link fw-semibold <?php if ($title == 'Riwayat'){ echo 'active disabled'; } ?>" href="history.php">Riwayat</a>
                     </li>
                     <li class="nav-item">
                         <a class="fw-semibold btn btn-danger" href="logout.php">Logout</a>

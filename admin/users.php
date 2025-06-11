@@ -179,7 +179,7 @@ $query = mysqli_query($conn, "SELECT * FROM users WHERE id != '$adminId' ORDER B
                     <td><?= $data['gender']; ?></td>
                     <td><?= $data['role']; ?></td>
                     <td>
-                        <a href="users.php?reset_pass=<?= $data['id'] ?>&name=<?= $data['name'] ?>" class="btn btn-success btn-sm"><i class="fa-solid fa-recycle"></i> Reset Password</a>
+                        <a href="users.php?reset_pass=<?= $data['id'] ?>&name=<?= $data['name'] ?>" class="btn btn-success btn-sm"><i class="fa-solid fa-arrow-rotate-left"></i> Reset Password</a>
                         <a href="users.php?edit=<?= $data['id']; ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
                         <a href="users.php?delete=<?= $data['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus pengguna ini?');"><i class="fa-solid fa-trash"></i> Hapus</a>
                     </td>

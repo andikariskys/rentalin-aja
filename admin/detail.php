@@ -13,6 +13,8 @@ $query = mysqli_query($conn, "SELECT * FROM products");
     <h1 class="mt-5">Detail Peminjaman</h1>
 </center>
 
+
+
 <?php
 footer();
 ?>

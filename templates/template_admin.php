@@ -25,7 +25,7 @@ function header_navbar($active)
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav me-0 ms-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link fw-semibold <?php if ($active == 'Dashboard'){ echo 'active disabled'; } ?>" href="index.php" aria-current="page">Dashboard</a>
+                        <a class="nav-link fw-semibold <?php if ($active == 'Dashboard'){ echo 'active disabled'; } ?>" href="index.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fw-semibold <?php if ($active == 'Kategori'){ echo 'active disabled'; } ?>" href="categories.php">Kategori</a>

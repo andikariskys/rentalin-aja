@@ -24,11 +24,11 @@ function header_navbar($title)
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav me-0 ms-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link fw-semibold" href="index.php" aria-current="page">Dashboard</a>
+                        <a class="nav-link fw-semibold" href="index.php">Dashboard</a>
                     </li>
                     <?php if ($title != 'Login') { ?>
                     <li class="nav-item">
-                        <a class="fw-semibold btn btn-primary" href="login.php" aria-current="page">Login</a>
+                        <a class="fw-semibold btn btn-primary" href="login.php">Login</a>
                     </li>
                     <?php } ?>
                 </ul>
