@@ -23,7 +23,12 @@ function header_navbar($title)
             </button>
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav me-0 ms-auto mt-2 mt-lg-0">
-                    <?php if (isset($_SESSION['user_id'])) { ?>
+                    <?php if (isset($_SESSION['user_id'])) { 
+                        if ($title == 'Rentalin Aja') { ?>
+                        <li class="nav-item">
+                            <button class="nav-link fw-semibold btn btn-light" id="btn-cart"><i class="fa-solid fa-cart-shopping"></i></button>
+                        </li>
+                        <?php } ?>
                     <li class="nav-item">
                         <a class="nav-link fw-semibold <?php if ($title == 'Rentalin Aja'){ echo 'active disabled'; } ?>" href="index.php">Dashboard</a>
                     </li>

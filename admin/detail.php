@@ -30,6 +30,12 @@ if (isset($_POST['returned'])) {
         $updateQuery = mysqli_query($conn, "UPDATE borrowings SET status='returned' WHERE id='$id_borrowing'");
     }
 
+    $productQuery = mysqli_query($conn, "SELECT product_id FROM borrowing_details WHERE borrowing_id = '$id_borrowing'");
+    while ($product = mysqli_fetch_assoc($productQuery)) {
+        $productId = $product['product_id'];
+        mysqli_query($conn, "UPDATE products SET stock = stock + 1 WHERE id = '$productId'");
+    }
+
     if ($updateQuery) {
         echo '<script>window.location.href="detail.php?id=' . $id_borrowing . '";</script>';
     } else {
