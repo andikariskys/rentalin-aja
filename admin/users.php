@@ -177,7 +177,13 @@ $query = mysqli_query($conn, "SELECT * FROM users WHERE id != '$adminId' ORDER B
                     <td><?= $data['username']; ?></td>
                     <td><?= $data['name']; ?></td>
                     <td><?= $data['gender']; ?></td>
-                    <td><?= $data['role']; ?></td>
+                    <td>
+                        <?php if ($data['role'] == 'admin') { ?>
+                            <span class="badge rounded-pill bg-primary">Admin</span>
+                        <?php } else { ?>
+                            <span class="badge rounded-pill bg-secondary">User</span>
+                        <?php } ?>
+                    </td>
                     <td>
                         <a href="users.php?reset_pass=<?= $data['id'] ?>&name=<?= $data['name'] ?>" class="btn btn-success btn-sm"><i class="fa-solid fa-arrow-rotate-left"></i> Reset Password</a>
                         <a href="users.php?edit=<?= $data['id']; ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i> Edit</a>

@@ -5,7 +5,7 @@ admin_require_login();
 include '../templates/template_admin.php';
 header_navbar('Dashboard');
 
-$query = mysqli_query($conn, "SELECT * FROM borrowings INNER JOIN users ON borrowings.user_id = users.id ORDER BY borrowings.borrow_date DESC");
+$query = mysqli_query($conn, "SELECT borrowings.*, users.name AS name FROM borrowings INNER JOIN users ON borrowings.user_id = users.id ORDER BY borrowings.borrow_date DESC");
 ?>
 
 <center>
@@ -33,7 +33,7 @@ $query = mysqli_query($conn, "SELECT * FROM borrowings INNER JOIN users ON borro
                 <td><?= $data['name']; ?></td>
                 <td><?= $data['borrow_date']; ?></td>
                 <td><?= $data['return_date']; ?></td>
-                <td><?= $data['code']; ?></td>
+                <td>#<?= $data['code']; ?></td>
                 <td>
                     <?php
                     if ($data['status'] == 'pending') {
@@ -43,9 +43,11 @@ $query = mysqli_query($conn, "SELECT * FROM borrowings INNER JOIN users ON borro
                     } elseif ($data['status'] == 'rejected') {
                         echo '<span class="badge bg-secondary">Rejected</span>';
                     } elseif ($data['status'] == 'approved') {
-                        echo '<span class="badge bg-info">Approved</span>';
-                    } else {
-                        echo '<span class="badge bg-danger">Overdue</span>';
+                        if ($data['return_date'] < date('Y-m-d H:i:s')) {
+                            echo '<span class="badge bg-danger">Overdue</span>';
+                        } else {
+                            echo '<span class="badge bg-info">Approved</span>';
+                        }
                     }
                     ?>
                 </td>
