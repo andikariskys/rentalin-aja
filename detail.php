@@ -1,47 +1,9 @@
 <?php
-include '../connection.php';
-admin_require_login();
+include 'connection.php';
+user_require_login();
 
-include '../templates/template_admin.php';
+include 'templates/template_user.php';
 header_navbar('Detail Peminjaman');
-
-if (isset($_POST['submit'])) {
-    $identity_type = $_POST['identity_type'];
-    $identity_number = $_POST['identity_number'];
-    $identity_name = $_POST['identity_name'];
-    $id_borrowing = $_POST['id_borrowing'];
-
-
-    $updateQuery = mysqli_query($conn, "UPDATE borrowings SET identity_type='$identity_type', identity_number='$identity_number', identity_name='$identity_name', status='approved' WHERE id='$id_borrowing'");
-    if ($updateQuery) {
-        echo '<script>alert("Data pengambilan berhasil disimpan!"); window.location.href="detail.php?id=' . $id_borrowing . '";</script>';
-    } else {
-        echo '<script>alert("Gagal menyimpan data pengambilan!");</script>';
-    }
-}
-
-if (isset($_POST['returned'])) {
-    $id_borrowing = $_POST['id_borrowing'];
-    $overdue = $_POST['overdue'];
-
-    if ($overdue == '1') {
-        $updateQuery = mysqli_query($conn, "UPDATE borrowings SET status='overdue' WHERE id='$id_borrowing'");
-    } else {
-        $updateQuery = mysqli_query($conn, "UPDATE borrowings SET status='returned' WHERE id='$id_borrowing'");
-    }
-
-    $productQuery = mysqli_query($conn, "SELECT product_id FROM borrowing_details WHERE borrowing_id = '$id_borrowing'");
-    while ($product = mysqli_fetch_assoc($productQuery)) {
-        $productId = $product['product_id'];
-        mysqli_query($conn, "UPDATE products SET stock = stock + 1 WHERE id = '$productId'");
-    }
-
-    if ($updateQuery) {
-        echo '<script>window.location.href="detail.php?id=' . $id_borrowing . '";</script>';
-    } else {
-        echo '<script>alert("Gagal menandai peminjaman sebagai sudah dikembalikan!");</script>';
-    }
-}
 
 $idBorrow = $_GET['id'];
 if (!isset($idBorrow) || empty($idBorrow)) {
@@ -173,49 +135,7 @@ $duration = ceil($duration * 2) / 2;
 
 <?php
 $status = $borrowing['status'];
-if ($status == 'pending') { ?>
-    <h4 class="mt-3">Form Pengambilan</h4>
-    <form method="post">
-        <div class="row">
-            <div class="col-md-4">
-                <p class="fw-bold">Jenis identitas</p>
-            </div>
-            <div class="col-md-8">
-                <select name="identity_type" class="form-select" required>
-                    <option value="" disabled selected>Pilih jenis identitas</option>
-                    <option value="KTP">KTP</option>
-                    <option value="SIM">SIM</option>
-                    <option value="KK">Kartu Keluarga</option>
-                    <option value="Ijazah">Ijazah</option>
-                </select>
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-md-4">
-                <p class="fw-bold">Nomor identitas</p>
-            </div>
-            <div class="col-md-8">
-                <input type="number" name="identity_number" class="form-control" min="100000000000000" max="9999999999999999" placeholder="Masukkan nomor identitas" required>
-                <p class="text-disabled">Note. Untuk tipe <span class="fw-bold">Kartu Keluarga</span> bisa diisi dengan No. KK.</p>
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col-md-4">
-                <p class="fw-bold">Nama identitas</p>
-            </div>
-            <div class="col-md-8">
-                <input type="text" name="identity_name" class="form-control" placeholder="Masukkan nama identitas" required>
-                <p class="text-disabled">Note. Untuk tipe <span class="fw-bold">Kartu Keluarga</span> bisa diisi dengan nama kepala keluarga.</p>
-            </div>
-        </div>
-        <div class="row my-2">
-            <div class="col-md-4"></div>
-            <div class="col-md-8">
-                <input type="hidden" name="id_borrowing" value="<?= $borrowing['id'] ?>">
-                <button name="submit" type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Simpan Pengambilan</button>
-            </div>
-    </form>
-<?php } elseif ($status == 'approved' || $status == 'returned' || $status == 'overdue') { ?>
+if ($status == 'approved' || $status == 'returned' || $status == 'overdue') { ?>
     <h4 class="mt-3">Informasi Pengambilan</h4>
     <table>
         <tr>
@@ -234,18 +154,7 @@ if ($status == 'pending') { ?>
             <td><?= $borrowing['identity_name'] ?></td>
         </tr>
     </table>
-    <?php if ($status == 'approved') { ?>
-        <form method="post" class="mt-3">
-            <input type="hidden" name="id_borrowing" value="<?= $borrowing['id'] ?>">
-            <?php if ($borrowing['return_date'] < date('Y-m-d H:i:s')) { ?>
-                <input type="hidden" name="overdue" value="1">
-            <?php } else { ?>
-                <input type="hidden" name="overdue" value="0">
-            <?php } ?>
-            <button name="returned" type="submit" class="btn btn-success"><i class="fa-solid fa-check"></i> Tandai Sudah Dikembalikan</button>
-        </form>
-<?php   }
-} ?>
+<?php } ?>
 
 <?php
 footer();

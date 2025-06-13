@@ -15,7 +15,7 @@ header_navbar('Rentalin Aja', 'dashboard');
         <div class="carousel-item active">
             <img src="assets/images/cars-suv.jpg" class="d-block object-fit-cover w-100" style="max-height: 300px; filter: brightness(50%);" alt="...">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Tak terpakai? RentalinAja</h5>
+                <h5>Ingin sewa barang? RentalinAja</h5>
                 <p>RentalinAja, aplikasi untuk menyewa dan menyewakan berbagai barang dengan mudah, cepat, dan aman. Cocok untuk kebutuhan pribadi maupun usaha tanpa harus membeli barang baru.</p>
             </div>
         </div>
@@ -70,6 +70,7 @@ header_navbar('Rentalin Aja', 'dashboard');
         if ($category['count'] != 0) { ?>
             <hr id="<?= $category['id'] ?>">
             <h4><?= $category['name'] ?></h4>
+            <p><?= $category['description'] ?></p>
 
             <?php
             $query2 = mysqli_query($conn, "SELECT * FROM products WHERE category_id = '" . $category['id'] . "' ORDER BY name ASC");
@@ -81,9 +82,9 @@ header_navbar('Rentalin Aja', 'dashboard');
                             <div class="card-body">
                                 <h6 class="card-title"><?= $product['name'] ?></h6>
                                 <p class="card-text fs-6"><?= $product['description'] ?></p>
-                                <p class="card-text fst-italic fw-bold">Stok: <?= $product['stock'] ?></p>
+                                <p class="card-text fst-italic"><span class="fw-bold">Rp. <?= number_format($product['price']) ?></span> | Stok: <?= $product['stock'] ?></p>
                                 <input type="checkbox" class="btn btn-check" id="<?= $product['id'] ?>" name="products[]" value="<?= $product['id'] ?>" autocomplete="off">
-                                <label class="btn btn-outline-primary <?= $product['stock'] == 0 ? 'disabled' : '' ?>" for="<?= $product['id'] ?>" style="width: 100%;"><i class="fa-solid fa-cart-plus"></i></label><br>
+                                <label class="btn btn-outline-primary <?= $product['stock'] == 0 || !isset($_SESSION['user_id']) ? 'disabled' : '' ?>" for="<?= $product['id'] ?>" style="width: 100%;"><i class="fa-solid fa-cart-plus"></i></label><br>
                             </div>
                         </div>
                     </div>

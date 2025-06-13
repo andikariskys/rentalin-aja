@@ -77,7 +77,7 @@ if (isset($_SESSION['error'])) {
                 </td>
                 <td><?= $data['name'] ?></td>
                 <td><?= $data['description'] ?></td>
-                <td>Rp. <?= $data['price'] ?></td>
+                <td>Rp. <?= number_format($data['price']) ?></td>
                 <td><?= $data['stock'] ?></td>
                 <td><?= $data['category'] ?></td>
                 <td>

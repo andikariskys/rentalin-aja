@@ -5,7 +5,7 @@ admin_require_login();
 include '../templates/template_admin.php';
 header_navbar('Dashboard');
 
-$query = mysqli_query($conn, "SELECT borrowings.*, users.name AS name FROM borrowings INNER JOIN users ON borrowings.user_id = users.id ORDER BY borrowings.borrow_date DESC");
+$query = mysqli_query($conn, "SELECT borrowings.*, users.name AS name FROM borrowings INNER JOIN users ON borrowings.user_id = users.id WHERE borrowings.status != 'canceled' ORDER BY borrowings.borrow_date DESC");
 ?>
 
 <center>
@@ -65,7 +65,6 @@ $query = mysqli_query($conn, "SELECT borrowings.*, users.name AS name FROM borro
         </tfoot>
     </table>
 </div>
-
 
 <?php
 footer();

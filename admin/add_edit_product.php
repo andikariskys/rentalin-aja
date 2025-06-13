@@ -110,7 +110,7 @@ if (isset($_SESSION['error'])) {
             <span class="text-secondary fst-italic">Note. Jangan pilih gambar jika tidak ingin memperbarui gambar.</span><br>
         <?php } ?>
         <label for="image" class="form-label">Gambar</label>
-        <input type="file" class="form-control" id="image" name="image" accept=".jpg,.jpeg,.png" <?= isset($editData['image']) ? '': 'required' ?> >
+        <input type="file" class="form-control" id="image" name="image" accept=".jpg,.jpeg,.png,.webp" <?= isset($editData['image']) ? '': 'required' ?> >
     </div>
     <div class="mb-3">
         <label for="description" class="form-label">Deskripsi</label>

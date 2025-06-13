@@ -31,7 +31,10 @@ if (isset($_POST['submit'])) {
 
 $products = $_POST['products'];
 if (!isset($products) || empty($products)) {
-    header('Location: index.php');
+    echo "<script>
+        alert('Keranjang peminjaman kosong!');
+        window.location.href = 'index.php';
+    </script>";
     exit();
 }
 
@@ -87,7 +90,7 @@ $query = mysqli_query($conn, "SELECT p.*, c.name AS category FROM products p INN
     <div class="mb-3">
         <label for="return_date" class="form-label">Perkiraan tanggal pegembalian</label>
         <?php
-        $todayPlusOneHour = date('Y-m-d H:i', strtotime('+1 day'));
+        $todayPlusOneHour = date('Y-m-d H:i', strtotime('+1 day +7 hour'));
         ?>
         <input type="datetime-local" class="form-control" id="return_date" min="<?= $todayPlusOneHour ?>" name="return_date" required>
     </div>

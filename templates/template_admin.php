@@ -9,7 +9,7 @@ function header_navbar($active)
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title><?= $active ?></title>
+            <title><?= $active ?> - Admin</title>
             <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
             <link rel="stylesheet" href="../assets/fontawesome/css/all.min.css">
             <link rel="stylesheet" href="../assets/datatables/datatables.min.css">
@@ -57,7 +57,6 @@ function footer() {
         </footer>
 
         <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="../assets/bootstrap/js/jquery.min.js"></script>
         <script src="../assets/datatables/datatables.min.js"></script>
         <script>
             let table = new DataTable('#myTable');
